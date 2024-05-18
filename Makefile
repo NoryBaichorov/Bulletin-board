@@ -16,4 +16,7 @@ test:
 lint:
 	bundle exec rubocop
 
+secrets:
+	cp .env.example .env
+
 .PHONY: test

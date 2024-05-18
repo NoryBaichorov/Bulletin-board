@@ -1,0 +1,5 @@
+ru:
+  button:
+    log_in: Войти
+    log_out: Выйти
+  success_login: Вы успешно вошли в систему

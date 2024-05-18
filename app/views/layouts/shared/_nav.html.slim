@@ -1,0 +1,9 @@
+.container.mb-2
+  .d-flex.flex-wrap.align-items-center.py-2.border-bottom
+    .navbar.navbar-expand-md.navbar-light.me-auto
+      = link_to t('title'), root_path, class: 'navbar-brand me-md-4'
+    ul.nav.nav-pills
+      li.nav-item.me-2
+        = button_to auth_request_path(:github), data: { turbo: false }, class: 'btn btn-light' do
+          span.bi.bi-github.me-2
+          = t('button.log_in')
