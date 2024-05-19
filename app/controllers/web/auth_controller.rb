@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Web::AuthController < Web::ApplicationController
-  skip_before_action :verify_authenticity_token, only: :callback
-
   def callback
     auth = request.env['omniauth.auth']
-    Rails.logger.debug { "auth => #{auth.inspect}" }
+
+    user = User.find_or_initialize_by(email: auth[:info][:email])
+    user.name = auth[:info][:name]
 
     if user.save
       sign_in(user)

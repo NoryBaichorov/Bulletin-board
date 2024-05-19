@@ -1,16 +1,17 @@
 doctype html
-html
+html.h-100
   head
     title
-      = t('title')
-    meta[name="viewport" content="width=device-width,initial-scale=1"]
+      = t('app_title')
+    meta[name='viewport' content='width=device-width,initial-scale=1']
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module'
   body.d-flex.flex-column.h-100
     = render partial: 'layouts/shared/nav'
-    .container.my-4
+    main
       - if flash.any?
         = render partial: 'layouts/shared/flash'
       == yield
+    = render partial: 'layouts/shared/footer'
