@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Admin::BulletinsController < Admin::ApplicationController
+class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def index
     @bulletins = Bulletin.ordered_bulletins
   end
