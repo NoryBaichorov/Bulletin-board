@@ -2,8 +2,23 @@
   .d-flex.flex-wrap.align-items-center.py-2.border-bottom
     .navbar.navbar-expand-md.navbar-light.me-auto
       = link_to t('app_title'), root_path, class: 'navbar-brand me-md-4'
+      - if signed_in?
+        .collapse.navbar-collapse
+          ul.nav.nav-pills.flex-grow-1.navbar-nav.me-auto
+            li.nav-item.me-2
+              = link_to t('links.main'), root_path, class: 'nav-link text-dark'
+            li.nav-item.me-2
+              = link_to t('links.my_bulletins'), root_path, class: 'nav-link text-dark'
+            li.nav-item.me-2
+              = link_to t('links.add'), new_bulletin_path, class: 'nav-link text-dark'
     ul.nav.nav-pills
-      li.nav-item.me-2
-        = button_to auth_request_path(:github), data: { turbo: false }, class: 'btn btn-light' do
-          span.bi.bi-github.me-2
-          = t('button.log_in')
+      - if signed_in?
+        li.nav-item.me-2
+          = link_to t('links.admin'), root_path, class: 'nav-link text-dark' if current_user.admin?
+        li.nav-item.me-2
+          = button_to t('links.log_out'), auth_logout_path, method: :delete, class: 'nav-link text-dark'
+      - else
+        li.nav-item.me-2
+          = button_to auth_request_path(:github), data: { turbo: false }, class: 'nav-link text-dark' do
+            span.bi.bi-github.me-2
+            = t('links.log_in')

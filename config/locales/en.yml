@@ -1,5 +1,15 @@
 en:
-  button:
+  bulletins:
+    create:
+      success: Bulletin has been successfully created
+  image_size_message: Must be less than 5 megabytes
+  links:
+    admin: Admin
+    add: Add
+    create_bulletin: Create bulletin
     log_in: Log in
     log_out: Log out
+    main: Main
+    my_bulletins: My bulletins
   success_login: You have successfully logged in
+  success_logout: You have successfully logged out

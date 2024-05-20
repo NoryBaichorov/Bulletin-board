@@ -1,0 +1,28 @@
+ru:
+  activerecord:
+    attributes:
+      bulletin:
+        category: Категория
+        description: Описание
+        image: 'Фотография - '
+        title: Заголовок
+    models:
+      bulletin: Объявление
+    errors:
+      models:
+        bulletin:
+          attributes:
+            category:
+              required: '- обязательное поле'
+            title:
+              blank: не может быть пустым
+              too_long: ' - максимальная длина 50 символов'
+              required: '- обязательное поле'
+            description:
+              blank: не может быть пустым
+              too_long: ' - максимальная длина 1000 символов'
+              required: '- обязательное поле'
+            image:
+              blank: не может быть пустой
+              content_type: допустимый формат - jpg/jpeg/png
+              required: '- обязательное поле'

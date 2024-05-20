@@ -4,7 +4,6 @@
       .row
         .p-3.p-lg-5.pt-lg-0
           .mb-4
-            h2 = t('board_title')
+            h2 = t('new_title')
             hr
-          .p-3.bg-light
-          .row.mt-2
+          = render partial: 'web/bulletins/form'

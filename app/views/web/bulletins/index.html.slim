@@ -1,0 +1,18 @@
+.mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-white.rounded-3
+      .row
+        .p-3.p-lg-5.pt-lg-0
+          .mb-4
+            h2 = t('board_title')
+            hr
+          .row.mt-2
+            - @bulletins.each do |bulletin|
+              .col-3.pt-2
+                .card.shadow-sm
+                  = image_tag(bulletin.image, size: 200, class: 'card-img-top x-object-fit-cover')
+                  .card-body
+                    = link_to bulletin_path(bulletin) do
+                      h5.card-title = bulletin.title
+                    h6.card-subtitle.mb-2.text-muted
+                      = pretty_time_ago(bulletin.created_at).to_s

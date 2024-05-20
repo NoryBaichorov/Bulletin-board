@@ -1,0 +1,29 @@
+en:
+  activerecord:
+    attributes:
+      bulletin:
+        category: Category
+        description: Description
+        image: Image
+        title: Title
+    models:
+      bulletin: Объявление
+    errors:
+      models:
+        bulletin:
+          attributes:
+            category:
+              required: can't be blank
+            title:
+              blank: cant'be blank
+              length:
+                maximum: maximum of 50 characters
+            description:
+              blank: can't be blank
+              length:
+                maximum: maximum of 1000 characters
+            image:
+              attached: can't be blank
+              content_type: jpg/jpeg/png format only
+              size:
+                less_than: size should not exceed 5 megabytes

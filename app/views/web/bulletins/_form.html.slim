@@ -1,0 +1,10 @@
+= simple_form_for @bulletin do |f|
+  = f.input :title, label: t('simple_form.labels.bulletins.title')
+  = f.input :description, label: t('simple_form.labels.bulletins.description')
+
+  = f.association :category, required: true, prompt: t('simple_form.prompts.bulletins.category'),
+                                             label: t('simple_form.labels.bulletins.category')
+
+  = f.input :image, as: :file, label: t('simple_form.labels.bulletins.image'), required: true
+
+  = f.submit :button, class: 'btn btn-primary', value: t('links.create_bulletin')

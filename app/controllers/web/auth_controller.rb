@@ -4,8 +4,8 @@ class Web::AuthController < Web::ApplicationController
   def callback
     auth = request.env['omniauth.auth']
 
-    user = User.find_or_initialize_by(email: auth[:info][:email])
-    user.name = auth[:info][:name]
+    user = User.find_or_initialize_by(email: auth.dig(:info, :email))
+    user.name = auth.dig(:info, :name)
 
     if user.save
       sign_in(user)
@@ -19,5 +19,7 @@ class Web::AuthController < Web::ApplicationController
 
   def logout
     sign_out
+    redirect_to root_path
+    flash[:primary] = t('success_logout')
   end
 end

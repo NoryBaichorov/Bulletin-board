@@ -1,5 +1,15 @@
 ru:
-  button:
+  bulletins:
+    create:
+      success: Объявление успешно создано
+  image_size_message: Размер изображения должен быть менее 5 мегабайт
+  links:
+    admin: Админка
+    add: Добавить
+    create_bulletin: Создать объявление
     log_in: Войти
     log_out: Выйти
+    main: Главная
+    my_bulletins: Мои объявления
   success_login: Вы успешно вошли в систему
+  success_logout: Вы успешно вышли из системы
