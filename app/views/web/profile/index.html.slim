@@ -1,0 +1,34 @@
+.mt-4.mb-5.pb-5
+  .container
+    .p-4.align-items-center.border.shadow.bg-white.rounded-3
+      .row
+        .p-3.p-lg-5.pt-lg-0
+          .mb-4
+            h2 = t('titles.my_bulletins')
+            hr
+          .row.mt-2
+            table.table.table-borderless
+              thead
+                tr
+                  th = t('activerecord.attributes.bulletin.title')
+                  th = t('activerecord.attributes.bulletin.state')
+                  th = t('activerecord.attributes.bulletin.created_at')
+                  th = t('activerecord.attributes.bulletin.actions')
+              tbody
+                - @bulletins.each do |bulletin|
+                  tr
+                    td = bulletin.title
+                    td = bulletin.state
+                    td = pretty_time_ago(bulletin.created_at).to_s
+                    td
+                      = link_to t('links.show'), bulletin_path(bulletin), class: 'me-2'
+                      = link_to t('links.edit'), edit_bulletin_path(bulletin), class: 'me-2'
+                      - if bulletin.may_to_moderate?
+                        = link_to t('links.to_moderate'), to_moderate_bulletin_path(bulletin),
+                                                          data: { turbo_method: :patch },
+                                                          class: 'me-2'
+
+                      - if bulletin.may_archive?
+                        = link_to t('links.archive'), archive_bulletin_path(bulletin),
+                                              data: { turbo_method: :patch, turbo_confirm: t('confirmations.archive') },
+                                              class: 'link-danger me-2'

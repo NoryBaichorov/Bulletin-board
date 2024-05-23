@@ -1,6 +1,7 @@
 - flash.each do |type, message|
-    | <div class="alert alert-
+    | <div class="container d-flex justify-content-between alert alert-
     = type
     | ">
     = message
+    button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'
     | </div>

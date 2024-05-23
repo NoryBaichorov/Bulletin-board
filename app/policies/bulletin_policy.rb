@@ -32,7 +32,19 @@ class BulletinPolicy < ApplicationPolicy
     author?
   end
 
+  def publish?
+    admin?
+  end
+
+  def reject?
+    admin?
+  end
+
   private
+
+  def admin?
+    user&.admin
+  end
 
   def author?
     user && bulletin.user == user

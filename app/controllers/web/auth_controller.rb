@@ -9,7 +9,7 @@ class Web::AuthController < Web::ApplicationController
 
     if user.save
       sign_in(user)
-      flash[:primary] = t('success_login')
+      flash[:primary] = t('authorization.sign_in')
     else
       flash[:danger] = user.errors.full_messages.join.to_sentence
     end
@@ -20,6 +20,6 @@ class Web::AuthController < Web::ApplicationController
   def logout
     sign_out
     redirect_to root_path
-    flash[:primary] = t('success_logout')
+    flash[:primary] = t('authorization.sign_out')
   end
 end

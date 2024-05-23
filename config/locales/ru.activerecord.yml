@@ -2,10 +2,22 @@ ru:
   activerecord:
     attributes:
       bulletin:
+        actions: Действия
         category: Категория
+        created_at: Дата создания
         description: Описание
-        image: 'Фотография - '
+        image: Фотография
+        state: Состояние
+        state/under_moderation: На модерации
+        state/rejected: Возвращено
+        state/draft: Черновик
+        state/published: Опубликовано
+        state/archived: В архиве
         title: Заголовок
+      category:
+        actions: Действия
+        id: ID
+        name: Название
     models:
       bulletin: Объявление
     errors:

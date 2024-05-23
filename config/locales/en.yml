@@ -1,15 +1,70 @@
 en:
+  aasm:
+    failure:
+      archive: Bulletin can not been archived!
+      publish: Bulletin can not been published!
+      reject: Bulletin can not been rejected!
+      to_moderate: Bulletin can not been moderated!
+    success:
+      archive: Bulletin has been archived
+      publish: Bulletin has been successfully published
+      reject: Bulletin has been rejected
+      to_moderate: Bulletin has been submitted for moderation
+
+  authorization:
+    sign_in: You have successfully sign in
+    sign_out: You have successfully sign out
+    unauthorized: Log in to the system!
+  
   bulletins:
     create:
       success: Bulletin has been successfully created
-  image_size_message: Must be less than 5 megabytes
+    update:
+      success: Bulletin has been successfully updated
+
+  category:
+    create:
+      success: Category has been successfully created
+    destroy:
+      success: Category has been successfully deleted
+    update:
+      success: Category has been successfully updated
+
+  confirmations:
+    archive: Are you sure you want to archive this bulletin?
+    destroy: Are you sure you want to delete this category?
+
   links:
     admin: Admin
     add: Add
-    create_bulletin: Create bulletin
+    add_category: Add category
+    all_bulletins: All bulletins
+    all_categories: All categories
+    archive: Archive
+    destroy: Delete
+    edit: Edit
     log_in: Log in
     log_out: Log out
     main: Main
     my_bulletins: My bulletins
-  success_login: You have successfully logged in
-  success_logout: You have successfully logged out
+    on_moderate: Bulletins on moderation
+    publish: Publish
+    reject: Reject
+    save_bulletin: Save bulletin
+    save_category: Save category
+    show: Show
+    to_moderate: To moderate
+
+  titles:
+    app: Bulletin board
+    all_bulletins: All bulletins
+    all_categories: All categories
+    board: Bulletins
+    categories: Categories
+    edit_bulletin: Edit bulletin
+    edit_category: Edit category
+    hexlet: Hexlet
+    my_bulletins: My bulletins
+    new_bulletin: New bulletin
+    new_category: New category
+    on_moderate: Bulletins on moderation

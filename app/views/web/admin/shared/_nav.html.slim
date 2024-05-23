@@ -1,0 +1,10 @@
+ul.nav.flex-column.nav-pills
+  li.nav-item
+    = link_to t('links.on_moderate'), admin_root_path,
+      class: "nav-link link-dark #{'active' if params[:active_link] == 'moderate'}"
+  li.nav-item
+    = link_to t('links.all_bulletins'), admin_bulletins_path,
+      class: "nav-link link-dark #{'active' if params[:active_link] == 'bulletins'}"
+  li.nav-item
+    = link_to t('links.all_categories'), admin_categories_path,
+      class: "nav-link link-dark #{'active' if params[:active_link] == 'categories'}"

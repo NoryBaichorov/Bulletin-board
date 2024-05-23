@@ -13,6 +13,8 @@ en:
         description: Description
         image: Image
         title: Title
+      category:
+        name: Название
     prompts:
       bulletins:
         category: Choose a category

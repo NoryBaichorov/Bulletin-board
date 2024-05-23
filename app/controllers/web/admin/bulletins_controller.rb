@@ -2,42 +2,77 @@
 
 class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def index
-    @bulletins = Bulletin.ordered_bulletins
+    @bulletins = Bulletin.all
+    params[:active_link] = 'bulletins'
+
+    authorize Bulletin
   end
 
-  def show
-    resource_bulletin
-  end
+  def publish
+    unless resource_bulletin.may_publish?
+      flash[:danger] = t('aasm.failure.publish')
+      redirect_back(fallback_location: admin_root_path)
+    end and return
 
-  def new
-    @bulletin = Bulletin.new
-  end
+    authorize resource_bulletin
 
-  def edit; end
+    resource_bulletin.publish!
 
-  def create
-    @bulletin = Bulletin.new(bulletin_params.merge(user_id: current_user.id))
-
-    if @bulletin.save
-      flash[:primary] = t('bulletins.create.success')
-      redirect_to @bulletin
+    if resource_bulletin.save
+      flash[:primary] = t('aasm.success.publish')
+      redirect_back(fallback_location: admin_root_path) # rubocop:disable Style/IdenticalConditionalBranches
     else
-      redirect_back(fallback_location: new_bulletin_path)
-      flash[:danger] = @bulletin.errors.full_messages.to_sentence
+      flash[:danger] = t('aasm.failure.publish')
+      redirect_back(fallback_location: admin_root_path) # rubocop:disable Style/IdenticalConditionalBranches
     end
   end
 
-  def update; end
+  def reject
+    unless resource_bulletin.may_reject?
+      flash[:danger] = t('aasm.failure.reject')
+      redirect_back(fallback_location: admin_root_path)
+    end and return
 
-  def destroy; end
+    authorize resource_bulletin
+
+    resource_bulletin.reject!
+
+    if resource_bulletin.save
+      flash[:primary] = t('aasm.success.reject')
+      redirect_back(fallback_location: admin_root_path) # rubocop:disable Style/IdenticalConditionalBranches
+    else
+      flash[:danger] = resource_bulletin.errors.full_messages.to_sentence
+      redirect_back(fallback_location: admin_root_path) # rubocop:disable Style/IdenticalConditionalBranches
+    end
+  end
+
+  def archive
+    unless resource_bulletin.may_archive?
+      flash[:danger] = t('aasm.failure.archive')
+      redirect_back(fallback_location: admin_root_path)
+    end and return
+
+    authorize resource_bulletin
+
+    resource_bulletin.archive!
+
+    if resource_bulletin.save
+      flash[:primary] = t('aasm.success.archive')
+      redirect_back(fallback_location: admin_root_path) # rubocop:disable Style/IdenticalConditionalBranches
+    else
+      flash[:danger] = resource_bulletin.errors.full_messages.to_sentence
+      redirect_back(fallback_location: admin_root_path) # rubocop:disable Style/IdenticalConditionalBranches
+    end
+  end
 
   private
 
-  def resource_bulletin
-    @bulletin = Bulletin.find(params[:id])
-  end
-
   def bulletin_params
-    params.require(:bulletin).permit(:title, :description, :image, :category_id, :user_id)
+    params.require(:bulletin).permit(:title,
+                                     :description,
+                                     :image,
+                                     :category_id,
+                                     :user_id,
+                                     :state)
   end
 end

@@ -1,15 +1,71 @@
 ru:
+  aasm:
+    failure:
+      archive: Объявление не может быть архивировано!
+      publish: Объявление не может быть опубликовано!
+      reject: Объявление не может быть отклонено!
+      to_moderate: Объявление не может быть отправлено модерацию!
+    success:
+      archive: Объявление архивировано
+      publish: Объявление успешно опубликовано
+      reject: Объявление было отклонено
+      to_moderate: Объявление отправлено на модерацию
+
+  authorization:
+    sign_in: Вы успешно вошли в систему
+    sign_out: Вы вышли из системы
+    unauthorized: Войдите в систему!
+  
   bulletins:
     create:
-      success: Объявление успешно создано
-  image_size_message: Размер изображения должен быть менее 5 мегабайт
+      success: Объявление было успешно создано
+    update:
+      success: Объявление было успешно создано
+
+  category:
+    create:
+      success: Категория была успешно создана
+    destroy:
+      success: Категория была успешно удалена
+    update:
+      success: Категория была успешно обновлена
+    
+
+  confirmations:
+    archive: Вы уверены, что хотите архивировать объявление?
+    destroy: Вы уверены, что хотите удалить категорию?
+
   links:
     admin: Админка
     add: Добавить
-    create_bulletin: Создать объявление
+    add_category: Добавить категорию
+    all_bulletins: Все объявления
+    all_categories: Все категории
+    archive: В архив
+    destroy: Удалить
+    edit: Редактировать
     log_in: Войти
     log_out: Выйти
     main: Главная
     my_bulletins: Мои объявления
-  success_login: Вы успешно вошли в систему
-  success_logout: Вы успешно вышли из системы
+    on_moderate: Объявления на модерации
+    publish: Опубликовать
+    reject: Вернуть
+    save_bulletin: Сохранить объявление
+    save_category: Сохранить категорию
+    show: Показать
+    to_moderate: На модерацию
+
+  titles:
+    app: Доска объявлений
+    all_bulletins: Все объявления
+    all_categories: Все категории
+    board: Объявления
+    categories: Категории
+    edit_bulletin: Редактировать объявление
+    edit_category: Редактировать категорию
+    hexlet: Хекслет
+    my_bulletins: Мои объявления
+    new_bulletin: Создать объявление
+    new_category: Новая категория
+    on_moderate: Объявления на модерации

@@ -4,7 +4,9 @@
 
   = f.association :category, required: true, prompt: t('simple_form.prompts.bulletins.category'),
                                              label: t('simple_form.labels.bulletins.category')
+  - if @bulletin.image.attached?
+    = image_tag(@bulletin.image, size: 100, class: 'img-thumbnail mb-2')
 
   = f.input :image, as: :file, label: t('simple_form.labels.bulletins.image'), required: true
 
-  = f.submit :button, class: 'btn btn-primary', value: t('links.create_bulletin')
+  = f.submit :button, class: 'btn btn-primary', value: t('links.save_bulletin')

@@ -2,12 +2,24 @@ en:
   activerecord:
     attributes:
       bulletin:
+        actions: Actions
         category: Category
+        created_at: Creation date
         description: Description
         image: Image
+        state: State
+        state/under_moderation: under moderate
+        state/rejected: rejected
+        state/draft: draft
+        state/published: published
+        state/archived: archived
         title: Title
+      category:
+        actions: Actions
+        id: ID
+        name: Name
     models:
-      bulletin: Объявление
+      bulletin: Bulletin
     errors:
       models:
         bulletin:

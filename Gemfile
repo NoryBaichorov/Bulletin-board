@@ -42,6 +42,10 @@ gem 'image_processing', '~> 1.2'
 
 gem 'active_storage_validations'
 
+gem 'aasm'
+
+gem 'aws-sdk-s3', '~> 1.151', require: false
+
 gem 'rubocop', require: false
 gem 'rubocop-performance', require: false
 gem 'rubocop-rails', require: false

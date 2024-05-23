@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:danger] = t('pundit.unauthorized')
+    flash[:danger] = t('authorization.unauthorized')
     redirect_back(fallback_location: root_path)
+  end
+
+  def resource_bulletin
+    @bulletin = Bulletin.find(params[:id])
   end
 end

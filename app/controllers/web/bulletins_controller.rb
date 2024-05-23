@@ -2,22 +2,22 @@
 
 class Web::BulletinsController < Web::ApplicationController
   def index
-    @bulletins = Bulletin.ordered_bulletins
+    @bulletins = Bulletin.published_bulletins.order_by_desc
   end
 
-  def show
-    resource_bulletin
-  end
+  def show; end
 
   def new
     @bulletin = Bulletin.new
     authorize @bulletin
   end
 
-  def edit; end
+  def edit
+    authorize resource_bulletin
+  end
 
   def create
-    @bulletin = Bulletin.new(bulletin_params.merge(user_id: current_user.id))
+    @bulletin = Bulletin.new(bulletin_params.merge(user_id: current_user&.id))
     authorize @bulletin
 
     if @bulletin.save
@@ -29,17 +29,64 @@ class Web::BulletinsController < Web::ApplicationController
     end
   end
 
-  def update; end
+  def update
+    authorize resource_bulletin
 
-  def destroy; end
+    if resource_bulletin.update(bulletin_params)
+      flash[:primary] = t('bulletins.update.success')
+      redirect_back(fallback_location: profile_path)
+    else
+      flash[:danger] = resource_bulletin.errors.full_messages.to_sentence
+      redirect_back(fallback_location: edit_bulletin_path(resource_bulletin))
+    end
+  end
+
+  def to_moderate
+    authorize resource_bulletin
+
+    unless resource_bulletin.may_to_moderate?
+      flash[:danger] = t('aasm.failure.to_moderate')
+      redirect_back(fallback_location: admin_root_path)
+    end and return
+
+    resource_bulletin.to_moderate!
+
+    if resource_bulletin.save
+      flash[:primary] = t('aasm.success.to_moderate')
+      redirect_back(fallback_location: profile_path) # rubocop:disable Style/IdenticalConditionalBranches
+    else
+      flash[:danger] = resource_bulletin.errors.full_messages.to_sentence
+      redirect_back(fallback_location: profile_path) # rubocop:disable Style/IdenticalConditionalBranches
+    end
+  end
+
+  def archive
+    authorize resource_bulletin
+
+    unless resource_bulletin.may_archive?
+      flash[:danger] = t('aasm.failure.archive')
+      redirect_back(fallback_location: admin_root_path)
+    end and return
+
+    resource_bulletin.archive!
+
+    if resource_bulletin.save
+      flash[:primary] = t('aasm.success.archive')
+      redirect_back(fallback_location: profile_path) # rubocop:disable Style/IdenticalConditionalBranches
+    else
+      flash[:danger] = resource_bulletin.errors.full_messages.to_sentence
+      redirect_back(fallback_location: profile_path) # rubocop:disable Style/IdenticalConditionalBranches
+    end
+  end
 
   private
 
-  def resource_bulletin
-    @bulletin = Bulletin.find(params[:id])
-  end
-
   def bulletin_params
-    params.require(:bulletin).permit(:title, :description, :image, :category_id, :user_id)
+    params.require(:bulletin).permit(:title,
+                                     :description,
+                                     :image,
+                                     :category_id,
+                                     :user_id,
+                                     :state)
   end
 end
