@@ -7,6 +7,10 @@ en:
       mark: '*'
     error_notification:
       default_message: "Please review the problems below:"
+    hints:
+      search: Search by bulletin's title
+      select_category: Select category
+      select_state: State
     labels:
       bulletins:
         category: Category

@@ -59,10 +59,14 @@ gem 'slim_lint'
 
 gem 'faker'
 
+gem 'kaminari'
+
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 
 gem 'pundit'
+
+gem 'ransack'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]

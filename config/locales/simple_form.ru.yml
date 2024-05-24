@@ -7,6 +7,10 @@ ru:
       mark: '*'
     error_notification:
       default_message: "Пожалуйста ознакомьтесь с проблемами:"
+    hints:
+      search: Искать по названию объявления
+      select_category: Выбрать категорию
+      select_state: Состояние
     labels:
       bulletins:
         category: Категория

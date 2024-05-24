@@ -8,6 +8,10 @@ class BulletinPolicy < ApplicationPolicy
     @bulletin = bulletin
   end
 
+  def index?
+    admin?
+  end
+
   def new?
     create?
   end

@@ -37,6 +37,7 @@ en:
   links:
     admin: Admin
     add: Add
+    add_bulletin: Add bulletin
     add_category: Add category
     all_bulletins: All bulletins
     all_categories: All categories
@@ -50,8 +51,10 @@ en:
     on_moderate: Bulletins on moderation
     publish: Publish
     reject: Reject
+    reset: Reset
     save_bulletin: Save bulletin
     save_category: Save category
+    search: Search
     show: Show
     to_moderate: To moderate
 

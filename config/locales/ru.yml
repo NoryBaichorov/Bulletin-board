@@ -20,7 +20,7 @@ ru:
     create:
       success: Объявление было успешно создано
     update:
-      success: Объявление было успешно создано
+      success: Объявление было успешно обновлено
 
   category:
     create:
@@ -38,6 +38,7 @@ ru:
   links:
     admin: Админка
     add: Добавить
+    add_bulletin: Добавить объявление
     add_category: Добавить категорию
     all_bulletins: Все объявления
     all_categories: Все категории
@@ -51,8 +52,10 @@ ru:
     on_moderate: Объявления на модерации
     publish: Опубликовать
     reject: Вернуть
+    reset: Сброс
     save_bulletin: Сохранить объявление
     save_category: Сохранить категорию
+    search: Искать
     show: Показать
     to_moderate: На модерацию
 

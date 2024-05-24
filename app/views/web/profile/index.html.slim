@@ -6,6 +6,8 @@
           .mb-4
             h2 = t('titles.my_bulletins')
             hr
+          = link_to t('links.add_bulletin'), new_bulletin_path
+          = render 'web/shared/search_form', url: profile_path
           .row.mt-2
             table.table.table-borderless
               thead
@@ -18,7 +20,7 @@
                 - @bulletins.each do |bulletin|
                   tr
                     td = bulletin.title
-                    td = bulletin.state
+                    td = bulletin.aasm.human_state
                     td = pretty_time_ago(bulletin.created_at).to_s
                     td
                       = link_to t('links.show'), bulletin_path(bulletin), class: 'me-2'
@@ -32,3 +34,4 @@
                         = link_to t('links.archive'), archive_bulletin_path(bulletin),
                                               data: { turbo_method: :patch, turbo_confirm: t('confirmations.archive') },
                                               class: 'link-danger me-2'
+      = paginate @bulletins, pagination_class: 'pagination flex-wrap justify-content-end', nav_class: 'pt-3'

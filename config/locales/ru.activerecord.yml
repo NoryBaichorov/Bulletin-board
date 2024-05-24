@@ -8,7 +8,7 @@ ru:
         description: Описание
         image: Фотография
         state: Состояние
-        state/under_moderation: На модерации
+        state/under_moderate: На модерации
         state/rejected: Возвращено
         state/draft: Черновик
         state/published: Опубликовано

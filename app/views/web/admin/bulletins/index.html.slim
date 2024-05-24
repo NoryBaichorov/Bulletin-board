@@ -5,6 +5,7 @@
     .col-md-9
       h1.h2.mb-4 = t('titles.all_bulletins')
       .row.mt-2
+        = render 'web/shared/search_form', url: admin_bulletins_path
         table.table.table-borderless
           thead
             tr
@@ -15,16 +16,13 @@
           tbody
             - @bulletins.each do |bulletin|
               tr
-                td = bulletin.title
-                td = bulletin.state
+                td
+                  = link_to bulletin.title, bulletin_path(bulletin)
+                td = bulletin.aasm.human_state
                 td = pretty_time_ago(bulletin.created_at).to_s
                 td
-                  = link_to t('links.publish'), publish_admin_bulletin_path(bulletin),
-                                                data: { turbo_method: :patch },
-                                                class: 'me-2'
-                  = link_to t('links.reject'), reject_admin_bulletin_path(bulletin),
-                                                data: { turbo_method: :patch },
-                                                class: 'me-2'
+                  = link_to t('links.show'), bulletin_path(bulletin), class: 'me-2'
                   = link_to t('links.archive'), archive_admin_bulletin_path(bulletin),
                                             data: { turbo_method: :patch, turbo_confirm: t('confirmations.archive') },
                                             class: 'link-danger me-2'
+        = paginate @bulletins, pagination_class: 'pagination flex-wrap justify-content-end', nav_class: 'pt-3'

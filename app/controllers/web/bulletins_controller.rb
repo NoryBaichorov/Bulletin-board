@@ -2,10 +2,14 @@
 
 class Web::BulletinsController < Web::ApplicationController
   def index
-    @bulletins = Bulletin.published_bulletins.order_by_desc
+    @query = Bulletin.published_bulletins.order_by_desc.ransack(params[:query])
+
+    @bulletins = @query.result.page(params[:page]).per(10)
   end
 
-  def show; end
+  def show
+    resource_bulletin
+  end
 
   def new
     @bulletin = Bulletin.new

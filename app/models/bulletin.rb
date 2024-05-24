@@ -40,4 +40,8 @@ class Bulletin < ApplicationRecord
   scope :order_by_desc, -> { order(created_at: :desc) }
   scope :published_bulletins, -> { where(state: :published) }
   scope :under_moderate_bulletins, -> { where(state: :under_moderate) }
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[state title category_id]
+  end
 end

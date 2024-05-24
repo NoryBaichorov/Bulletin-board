@@ -2,7 +2,9 @@
 
 class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   def index
-    @bulletins = Bulletin.all
+    @query = Bulletin.order_by_desc.ransack(params[:query])
+    @bulletins = @query.result.page(params[:page]).per(5)
+
     params[:active_link] = 'bulletins'
 
     authorize Bulletin
