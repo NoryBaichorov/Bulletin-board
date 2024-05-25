@@ -28,6 +28,10 @@ class CategoryPolicy < ApplicationPolicy
     admin?
   end
 
+  def destroy?
+    admin?
+  end
+
   private
 
   def admin?

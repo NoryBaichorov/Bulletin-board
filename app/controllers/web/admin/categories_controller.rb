@@ -21,7 +21,6 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
     authorize @category
 
-    Rails.logger.debug '==============================='
     if @category.save
       flash[:primary] = t('category.create.success')
       redirect_to admin_categories_path
@@ -38,7 +37,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
     if resource_category.save
       flash[:primary] = t('category.update.success')
-      redirect_to resource_category
+      redirect_to admin_categories_path
     else
       redirect_back(fallback_location: edit_admin_category_path)
       flash[:danger] = resource_category.errors.full_messages.to_sentence

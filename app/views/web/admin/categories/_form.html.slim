@@ -1,4 +1,4 @@
-= simple_form_for category, url: do |f|
+= simple_form_for [:admin, category] do |f|
   = f.input :name, label: t('simple_form.labels.category.name')
 
   = f.submit :button, class: 'btn btn-primary', value: t('links.save_category')

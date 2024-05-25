@@ -1,4 +1,20 @@
-image:
+archived:
+  name: image
+  record: archived (Bulletin)
+  blob: attachment_blob
+draft:
   name: image
   record: draft (Bulletin)
+  blob: attachment_blob
+published:
+  name: image
+  record: published (Bulletin)
+  blob: attachment_blob
+rejected:
+  name: image
+  record: rejected (Bulletin)
+  blob: attachment_blob
+under_moderate:
+  name: image
+  record: under_moderate (Bulletin)
   blob: attachment_blob

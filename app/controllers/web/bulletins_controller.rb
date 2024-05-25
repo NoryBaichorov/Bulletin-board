@@ -38,7 +38,7 @@ class Web::BulletinsController < Web::ApplicationController
 
     if resource_bulletin.update(bulletin_params)
       flash[:primary] = t('bulletins.update.success')
-      redirect_back(fallback_location: profile_path)
+      redirect_to profile_path
     else
       flash[:danger] = resource_bulletin.errors.full_messages.to_sentence
       redirect_back(fallback_location: edit_bulletin_path(resource_bulletin))
@@ -50,17 +50,17 @@ class Web::BulletinsController < Web::ApplicationController
 
     unless resource_bulletin.may_to_moderate?
       flash[:danger] = t('aasm.failure.to_moderate')
-      redirect_back(fallback_location: admin_root_path)
+      redirect_back(fallback_location: profile_path)
     end and return
 
     resource_bulletin.to_moderate!
 
     if resource_bulletin.save
       flash[:primary] = t('aasm.success.to_moderate')
-      redirect_back(fallback_location: profile_path) # rubocop:disable Style/IdenticalConditionalBranches
+      redirect_to profile_path
     else
       flash[:danger] = resource_bulletin.errors.full_messages.to_sentence
-      redirect_back(fallback_location: profile_path) # rubocop:disable Style/IdenticalConditionalBranches
+      redirect_back(fallback_location: profile_path)
     end
   end
 
@@ -69,17 +69,17 @@ class Web::BulletinsController < Web::ApplicationController
 
     unless resource_bulletin.may_archive?
       flash[:danger] = t('aasm.failure.archive')
-      redirect_back(fallback_location: admin_root_path)
+      redirect_back(fallback_location: profile_path)
     end and return
 
     resource_bulletin.archive!
 
     if resource_bulletin.save
       flash[:primary] = t('aasm.success.archive')
-      redirect_back(fallback_location: profile_path) # rubocop:disable Style/IdenticalConditionalBranches
+      redirect_to profile_path
     else
       flash[:danger] = resource_bulletin.errors.full_messages.to_sentence
-      redirect_back(fallback_location: profile_path) # rubocop:disable Style/IdenticalConditionalBranches
+      redirect_back(fallback_location: profile_path)
     end
   end
 
@@ -88,8 +88,8 @@ class Web::BulletinsController < Web::ApplicationController
   def bulletin_params
     params.require(:bulletin).permit(:title,
                                      :description,
-                                     :image,
                                      :category_id,
+                                     :image,
                                      :user_id,
                                      :state)
   end

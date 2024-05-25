@@ -3,34 +3,34 @@
 archived:
   title: MyString
   description: MyText
-  user: one
+  user: user
   category: one
   state: archived
 
 draft:
   title: MyString
   description: MyText
-  user: one
+  user: user
   category: one
   state: draft
 
 published:
   title: MyString
   description: MyText
-  user: one
+  user: user
   category: one
   state: published
 
 rejected:
   title: MyString
   description: MyText
-  user: one
+  user: user
   category: one
   state: rejected
 
 under_moderate:
   title: MyString
   description: MyText
-  user: one
+  user: user_two
   category: one
   state: under_moderate
