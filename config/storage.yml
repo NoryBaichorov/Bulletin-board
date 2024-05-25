@@ -12,6 +12,7 @@ yandex:
   access_key_id: ENV['YANDEX_ACCESS_KEY_ID']
   secret_access_key: ENV['YANDEX_SECRET_ACCESS_KEY']
   bucket: rails-hexlet-files
+  region: ENV['AWS_REGION']
   endpoint: 'https://storage.yandexcloud.net'
   force_path_style: true
 
