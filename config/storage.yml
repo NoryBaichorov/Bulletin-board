@@ -9,10 +9,10 @@ local:
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 yandex:
   service: S3
-  access_key_id: ENV['YANDEX_ACCESS_KEY_ID']
-  secret_access_key: ENV['YANDEX_SECRET_ACCESS_KEY']
+  access_key_id: <%= ENV.fetch('YANDEX_ACCESS_KEY_ID', nil) %>
+  secret_access_key: <%= ENV.fetch('YANDEX_SECRET_ACCESS_KEY', nil) %>
   bucket: rails-hexlet-files
-  region: ENV['AWS_REGION']
+  region: <%= ENV.fetch('AWS_REGION', nil) %>
   endpoint: 'https://storage.yandexcloud.net'
   force_path_style: true
 
