@@ -28,9 +28,9 @@ rejected:
   category: one
   state: rejected
 
-under_moderate:
+under_moderation:
   title: MyString
   description: MyText
   user: user_two
   category: one
-  state: under_moderate
+  state: under_moderation

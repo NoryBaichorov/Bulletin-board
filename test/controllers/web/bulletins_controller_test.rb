@@ -6,7 +6,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @archived_bulletin = bulletins(:archived)
     @default_bulletin = bulletins(:draft)
-    @under_moderate_bulletin = bulletins(:under_moderate)
+    @under_moderation_bulletin = bulletins(:under_moderation)
 
     @user = users(:user)
     @user_two = users(:user_two)
@@ -70,7 +70,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     @default_bulletin.reload
 
-    assert @default_bulletin.under_moderate?
+    assert @default_bulletin.under_moderation?
     assert_redirected_to profile_path
   end
 
@@ -81,9 +81,9 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  test 'should not set state to_moderate if already under_moderate' do
+  test 'should not set state to_moderate if already under_moderation' do
     sign_in @user_two
-    patch to_moderate_bulletin_path(@under_moderate_bulletin)
+    patch to_moderate_bulletin_path(@under_moderation_bulletin)
 
     assert_response :redirect
     assert_redirected_to profile_path

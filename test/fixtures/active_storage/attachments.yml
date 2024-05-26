@@ -2,19 +2,23 @@ archived:
   name: image
   record: archived (Bulletin)
   blob: attachment_blob
+  
 draft:
   name: image
   record: draft (Bulletin)
   blob: attachment_blob
+
 published:
   name: image
   record: published (Bulletin)
   blob: attachment_blob
+
 rejected:
   name: image
   record: rejected (Bulletin)
   blob: attachment_blob
-under_moderate:
+
+under_moderation:
   name: image
-  record: under_moderate (Bulletin)
+  record: under_moderation (Bulletin)
   blob: attachment_blob

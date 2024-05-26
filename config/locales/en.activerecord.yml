@@ -8,7 +8,7 @@ en:
         description: Description
         image: Image
         state: State
-        state/under_moderate: under moderate
+        state/under_moderation: under moderate
         state/rejected: rejected
         state/draft: draft
         state/published: published

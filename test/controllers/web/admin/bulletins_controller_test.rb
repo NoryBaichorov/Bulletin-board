@@ -4,16 +4,16 @@ require_relative '../../../test_helper'
 
 class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    @admin = users(:admin)
+    @user = users(:user)
+
     @archived_bulletin = bulletins(:archived)
     @published_bulletin = bulletins(:published)
     @rejected_bulletin = bulletins(:rejected)
-    @under_moderate_bulletin = bulletins(:under_moderate)
-
-    @admin = users(:admin)
-    @user = users(:user)
+    @under_moderation_bulletin = bulletins(:under_moderation)
   end
 
-  test 'should get under_moderate index' do
+  test 'should get under_moderation index' do
     sign_in @admin
 
     get admin_root_path
@@ -38,17 +38,17 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should set state published' do
     sign_in @admin
-    patch publish_admin_bulletin_path(@under_moderate_bulletin)
+    patch publish_admin_bulletin_url(@under_moderation_bulletin)
 
-    @under_moderate_bulletin.reload
+    @under_moderation_bulletin.reload
 
-    assert @under_moderate_bulletin.published?
+    assert @under_moderation_bulletin.published?
     assert_redirected_to admin_root_path
   end
 
   test 'should not set state published if not admin' do
     sign_in @user
-    patch publish_admin_bulletin_path(@under_moderate_bulletin)
+    patch publish_admin_bulletin_path(@under_moderation_bulletin)
 
     assert_response :redirect
     assert_redirected_to root_path
@@ -56,17 +56,17 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should set state rejected' do
     sign_in @admin
-    patch reject_admin_bulletin_path(@under_moderate_bulletin)
+    patch reject_admin_bulletin_url(@under_moderation_bulletin)
 
-    @under_moderate_bulletin.reload
+    @under_moderation_bulletin.reload
 
-    assert @under_moderate_bulletin.rejected?
+    assert @under_moderation_bulletin.rejected?
     assert_redirected_to admin_root_path
   end
 
   test 'should not set state rejected if not admin' do
     sign_in @user
-    patch reject_admin_bulletin_path(@under_moderate_bulletin)
+    patch reject_admin_bulletin_path(@under_moderation_bulletin)
 
     assert_response :redirect
     assert_redirected_to root_path
@@ -74,17 +74,17 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should set state archived' do
     sign_in @admin
-    patch archive_admin_bulletin_path(@under_moderate_bulletin)
+    patch archive_admin_bulletin_url(@under_moderation_bulletin)
 
-    @under_moderate_bulletin.reload
-    assert @under_moderate_bulletin.archived?
+    @under_moderation_bulletin.reload
+    assert @under_moderation_bulletin.archived?
     assert_redirected_to admin_root_path
   end
 
   test 'should not set state archived if not admin' do
     sign_in @user
-    patch archive_admin_bulletin_path(@under_moderate_bulletin)
-    @under_moderate_bulletin.reload
+    patch archive_admin_bulletin_path(@under_moderation_bulletin)
+    @under_moderation_bulletin.reload
 
     assert_response :redirect
     assert_redirected_to root_path

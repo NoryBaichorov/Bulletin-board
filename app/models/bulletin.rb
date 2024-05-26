@@ -10,22 +10,22 @@ class Bulletin < ApplicationRecord
 
   aasm column: 'state' do
     state :draft, initial: true
-    state :under_moderate, :published, :rejected, :archived
+    state :under_moderation, :published, :rejected, :archived
 
     event :to_moderate do
-      transitions from: :draft, to: :under_moderate
+      transitions from: :draft, to: :under_moderation
     end
 
     event :publish do
-      transitions from: :under_moderate, to: :published
+      transitions from: :under_moderation, to: :published
     end
 
     event :reject do
-      transitions from: :under_moderate, to: :rejected
+      transitions from: :under_moderation, to: :rejected
     end
 
     event :archive do
-      transitions from: %i[draft under_moderate published rejected], to: :archived
+      transitions from: %i[draft under_moderation published rejected], to: :archived
     end
   end
 
@@ -39,7 +39,7 @@ class Bulletin < ApplicationRecord
 
   scope :order_by_desc, -> { order(created_at: :desc) }
   scope :published_bulletins, -> { where(state: :published) }
-  scope :under_moderate_bulletins, -> { where(state: :under_moderate) }
+  scope :under_moderation_bulletins, -> { where(state: :under_moderation) }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[state title category_id]
