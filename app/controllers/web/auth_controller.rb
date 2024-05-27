@@ -5,7 +5,7 @@ class Web::AuthController < Web::ApplicationController
     auth = request.env['omniauth.auth']
 
     user = User.find_or_initialize_by(email: auth.dig(:info, :email))
-    user.name = auth.dig(:info, :name)
+    user.name ||= auth.dig(:info, :name)
 
     if user.save
       sign_in(user)
