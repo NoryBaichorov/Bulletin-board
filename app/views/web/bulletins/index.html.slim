@@ -16,5 +16,5 @@
                     = link_to bulletin_path(bulletin) do
                       h5.card-title = bulletin.title
                     h6.card-subtitle.mb-2.text-muted
-                      = pretty_time_ago(bulletin.created_at).to_s
+                      = time_ago_in_words(bulletin.created_at)
         = paginate @bulletins, pagination_class: 'pagination flex-wrap justify-content-end', nav_class: 'pt-3'

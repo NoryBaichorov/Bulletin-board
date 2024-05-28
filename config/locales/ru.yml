@@ -12,9 +12,10 @@ ru:
       to_moderate: Объявление отправлено на модерацию
 
   authorization:
+    not_admin: Доступ к этому ресурсу есть только у администратора!
     sign_in: Вы успешно вошли в систему
     sign_out: Вы вышли из системы
-    unauthorized: Войдите в систему!
+    unauthorized: У вас нет доступа к этому ресурсу!
   
   bulletins:
     create:

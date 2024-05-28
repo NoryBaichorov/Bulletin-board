@@ -22,6 +22,10 @@ en:
       bulletin: Bulletin
     errors:
       models:
+        category:
+          attributes:
+            name:
+              blank: не может быть пустым
         bulletin:
           attributes:
             category:

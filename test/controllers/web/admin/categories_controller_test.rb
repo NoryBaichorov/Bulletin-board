@@ -67,7 +67,7 @@ class Web::CategoriesControllerTest < ActionDispatch::IntegrationTest
 
     new_category = Category.find_by @attrs
 
-    assert new_category.name = @attrs[:name]
+    assert new_category[:name] == @attrs[:name]
     assert_redirected_to admin_categories_path
   end
 

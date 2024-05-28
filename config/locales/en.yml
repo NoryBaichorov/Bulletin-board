@@ -12,9 +12,10 @@ en:
       to_moderate: Bulletin has been submitted for moderation
 
   authorization:
+    not_admin: Only the administrator is allowed to access this resource
     sign_in: You have successfully sign in
     sign_out: You have successfully sign out
-    unauthorized: Log in to the system!
+    unauthorized: You do not have permission to view this resource!
   
   bulletins:
     create:

@@ -12,12 +12,16 @@ class BulletinPolicy < ApplicationPolicy
     admin?
   end
 
+  def show?
+    published_bulletin? || author? || admin?
+  end
+
   def new?
-    create?
+    user
   end
 
   def create?
-    user
+    new?
   end
 
   def edit?
@@ -36,21 +40,17 @@ class BulletinPolicy < ApplicationPolicy
     admin? || author?
   end
 
-  def publish?
-    admin?
-  end
-
-  def reject?
-    admin?
-  end
-
   private
 
   def admin?
-    user&.admin
+    user&.admin?
   end
 
   def author?
     user && bulletin.user == user
+  end
+
+  def published_bulletin?
+    bulletin&.published?
   end
 end

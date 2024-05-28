@@ -15,7 +15,7 @@
             - @bulletins.each do |bulletin|
               tr
                 td = bulletin.title
-                td = pretty_time_ago(bulletin.created_at).to_s
+                td = time_ago_in_words(bulletin.created_at)
                 td
                   = link_to t('links.publish'), publish_admin_bulletin_path(bulletin),
                                                 data: { turbo_method: :patch },

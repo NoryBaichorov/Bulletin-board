@@ -11,8 +11,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   end
 
   def publish
-    authorize resource_bulletin
-
     unless resource_bulletin.may_publish?
       flash[:danger] = t('aasm.failure.publish')
       redirect_back(fallback_location: admin_root_path)
@@ -30,8 +28,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   end
 
   def reject
-    authorize resource_bulletin
-
     unless resource_bulletin.may_reject?
       flash[:danger] = t('aasm.failure.reject')
       redirect_back(fallback_location: admin_root_path)
@@ -49,8 +45,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
   end
 
   def archive
-    authorize resource_bulletin
-
     unless resource_bulletin.may_archive?
       flash[:danger] = t('aasm.failure.archive')
       redirect_back(fallback_location: admin_root_path)
