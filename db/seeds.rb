@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 25.times do
-  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+  image = Rails.public_path.join('seeds/111.jpg').open
 
   draft = Bulletin.new(
     title: Faker::Name.unique.name,
@@ -16,7 +16,7 @@
 end
 
 25.times do
-  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+  image = Rails.public_path.join('seeds/111.jpg').open
 
   under_moderation = Bulletin.new(
     title: Faker::Name.unique.name,
@@ -31,7 +31,7 @@ end
 end
 
 25.times do
-  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+  image = Rails.public_path.join('seeds/111.jpg').open
 
   published = Bulletin.new(
     title: Faker::Name.unique.name,
@@ -46,7 +46,7 @@ end
 end
 
 25.times do
-  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+  image = Rails.public_path.join('seeds/111.jpg').open
 
   rejected = Bulletin.new(
     title: Faker::Name.unique.name,
@@ -61,7 +61,7 @@ end
 end
 
 25.times do
-  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+  image = Rails.public_path.join('seeds/111.jpg').open
 
   archived = Bulletin.new(
     title: Faker::Name.unique.name,
@@ -75,4 +75,4 @@ end
   sleep 1
 end
 
-p "Created #{Bulletin.count} bulletins"
+Rails.logger.debug { "Created #{Bulletin.count} bulletins" }
