@@ -1,1 +1,78 @@
 # frozen_string_literal: true
+
+25.times do
+  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+
+  draft = Bulletin.new(
+    title: Faker::Name.unique.name,
+    description: Faker::Markdown.emphasis,
+    category_id: 1,
+    user_id: 2,
+    state: :draft
+  )
+  draft.image.attach(io: image, filename: '111.jpg', content_type: 'image/jpg')
+  draft.save!
+  sleep 1
+end
+
+25.times do
+  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+
+  under_moderation = Bulletin.new(
+    title: Faker::Name.unique.name,
+    description: Faker::Markdown.emphasis,
+    category_id: 1,
+    user_id: 2,
+    state: :under_moderation
+  )
+  under_moderation.image.attach(io: image, filename: '111.jpg', content_type: 'image/jpg')
+  under_moderation.save!
+  sleep 1
+end
+
+25.times do
+  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+
+  published = Bulletin.new(
+    title: Faker::Name.unique.name,
+    description: Faker::Markdown.emphasis,
+    category_id: 1,
+    user_id: 2,
+    state: :published
+  )
+  published.image.attach(io: image, filename: '111.jpg', content_type: 'image/jpg')
+  published.save!
+  sleep 1
+end
+
+25.times do
+  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+
+  rejected = Bulletin.new(
+    title: Faker::Name.unique.name,
+    description: Faker::Markdown.emphasis,
+    category_id: 1,
+    user_id: 2,
+    state: :rejected
+  )
+  rejected.image.attach(io: image, filename: '111.jpg', content_type: 'image/jpg')
+  rejected.save!
+  sleep 1
+end
+
+25.times do
+  image = File.open(Rails.root.join('public/seeds/111.jpg'))
+
+  archived = Bulletin.new(
+    title: Faker::Name.unique.name,
+    description: Faker::Markdown.emphasis,
+    category_id: 1,
+    user_id: 2,
+    state: :archived
+  )
+  archived.image.attach(io: image, filename: '111.jpg', content_type: 'image/jpg')
+  archived.save!
+  sleep 1
+end
+
+p "Created #{Bulletin.count} bulletins"
