@@ -74,5 +74,3 @@ end
   archived.save!
   sleep 1
 end
-
-Rails.logger.debug { "Created #{Bulletin.count} bulletins" }
