@@ -21,6 +21,8 @@ en:
     models:
       bulletin: Bulletin
     errors:
+      messages:
+        record_invalid: Record invalid
       models:
         category:
           attributes:

@@ -21,6 +21,8 @@ ru:
     models:
       bulletin: Объявление
     errors:
+      messages:
+        record_invalid: Record invalid
       models:
         category:
           attributes:
