@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RemoveAllUsersAddIndexAddAdmins < ActiveRecord::Migration[7.1]
   def change
     User.destroy_all
