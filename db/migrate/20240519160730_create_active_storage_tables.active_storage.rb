@@ -39,7 +39,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[7.0]
       t.foreign_key :active_storage_blobs, column: :blob_id
     end
 
-    create_table :active_storage_variant_records, id: primary_key_type do |t| # rubocop:disable Rails/CreateTableWithTimestamps
+    create_table :active_storage_variant_records, id: primary_key_type do |t| # rubocop:disable Rails/CreateTableWithTimestamps,Lint/RedundantCopDisableDirective
       t.belongs_to :blob, null: false, index: false, type: foreign_key_type
       t.string :variation_digest, null: false
 
