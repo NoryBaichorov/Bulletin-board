@@ -24,6 +24,9 @@ AllCops:
 Rails:
   Enabled: true
 
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
