@@ -1,11 +1,11 @@
-= simple_form_for @bulletin do |f|
+= simple_form_for bulletin do |f|
   = f.input :title, label: t('simple_form.labels.bulletins.title')
   = f.input :description, label: t('simple_form.labels.bulletins.description')
 
   = f.association :category, required: true, prompt: t('simple_form.prompts.bulletins.category'),
                                              label: t('simple_form.labels.bulletins.category')
-  - if @bulletin.image.attached?
-    = image_tag(@bulletin.image, size: 100, class: 'img-thumbnail mb-2')
+  - if bulletin.image.attached?
+    = image_tag(bulletin.image, size: 100, class: 'img-thumbnail mb-2')
 
   = f.input :image, as: :file, label: t('simple_form.labels.bulletins.image'), required: true
 

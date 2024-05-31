@@ -27,6 +27,7 @@ en:
     create:
       success: Category has been successfully created
     destroy:
+      has_bulletins: The category could not be deleted because it contains bulletins
       success: Category has been successfully deleted
     update:
       success: Category has been successfully updated

@@ -50,6 +50,9 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     patch publish_admin_bulletin_path(@under_moderation_bulletin)
 
+    @under_moderation_bulletin.reload
+
+    assert @under_moderation_bulletin.under_moderation?
     assert_response :redirect
     assert_redirected_to root_path
   end
@@ -68,6 +71,9 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     patch reject_admin_bulletin_path(@under_moderation_bulletin)
 
+    @under_moderation_bulletin.reload
+
+    assert @under_moderation_bulletin.under_moderation?
     assert_response :redirect
     assert_redirected_to root_path
   end
@@ -84,8 +90,10 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should not set state archived if not admin' do
     sign_in @user
     patch archive_admin_bulletin_path(@under_moderation_bulletin)
+
     @under_moderation_bulletin.reload
 
+    assert @under_moderation_bulletin.under_moderation?
     assert_response :redirect
     assert_redirected_to root_path
   end

@@ -3,8 +3,8 @@
 class Bulletin < ApplicationRecord
   include AASM
 
-  belongs_to :user, inverse_of: :bulletins
-  belongs_to :category, inverse_of: :bulletins
+  belongs_to :user
+  belongs_to :category
 
   has_one_attached :image
 
@@ -38,8 +38,6 @@ class Bulletin < ApplicationRecord
                             message: I18n.t('image_size_message') }
 
   scope :order_by_desc, -> { order(created_at: :desc) }
-  scope :published_bulletins, -> { where(state: :published) }
-  scope :under_moderation_bulletins, -> { where(state: :under_moderation) }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[state title category_id]

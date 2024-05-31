@@ -17,8 +17,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @attrs = {
       title: Faker::Movies::HarryPotter.character,
       description: Faker::Lorem.paragraph_by_chars(number: 256),
-      category_id: @category.id,
-      user_id: @user.id
+      category_id: @category.id
     }
   end
 
@@ -41,8 +40,25 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should not get new if unauthorized' do
     get new_bulletin_url
+
     assert_response :redirect
     assert_redirected_to root_url
+  end
+
+  test 'should get edit if author' do
+    sign_in @user
+
+    get edit_bulletin_url(@default_bulletin)
+    assert_response :success
+  end
+
+  test 'should not get edit if not author' do
+    sign_in @user_two
+
+    get edit_bulletin_url(@default_bulletin)
+
+    assert_response :redirect
+    assert_redirected_to root_path
   end
 
   test 'should update bulletin' do
@@ -77,10 +93,15 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should not set state to_moderate if unauthorized' do
     patch to_moderate_bulletin_path(@default_bulletin)
 
+    @default_bulletin.reload
+
+    assert @default_bulletin.draft?
     assert_response :redirect
     assert_redirected_to root_path
   end
 
+  # Тестирую то, что нельзя отправить на модерацию объявление, которое уже на модерации
+  # Архивное объявление не беру, т.к согласно схеме задания, состояние архивных объявлений нельзя изменить
   test 'should not set state to_moderate if already under_moderation' do
     sign_in @user_two
     patch to_moderate_bulletin_path(@under_moderation_bulletin)
@@ -102,6 +123,9 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should not set state archived if unauthorized' do
     patch archive_bulletin_path(@default_bulletin)
 
+    @default_bulletin.reload
+
+    assert @default_bulletin.draft?
     assert_response :redirect
     assert_redirected_to root_path
   end

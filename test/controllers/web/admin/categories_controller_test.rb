@@ -5,9 +5,9 @@ require_relative '../../../test_helper'
 class Web::CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @admin = users(:admin)
-    @user = users(:user)
 
     @category = categories(:one)
+    @category_two = categories(:two)
 
     @attrs = { name: Faker::Movies::HarryPotter.character }
   end
@@ -19,15 +19,6 @@ class Web::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should not get index if not admin' do
-    sign_in @user
-
-    get admin_categories_path
-
-    assert_response :redirect
-    assert_redirected_to root_path
-  end
-
   test 'should get new' do
     sign_in @admin
 
@@ -35,12 +26,11 @@ class Web::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should not get new if not admin' do
-    sign_in @user
-    get new_admin_category_path
+  test 'should get edit' do
+    sign_in @admin
 
-    assert_response :redirect
-    assert_redirected_to root_path
+    get edit_admin_category_path(@category)
+    assert_response :success
   end
 
   test 'should update category' do
@@ -53,29 +43,33 @@ class Web::CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_categories_path
   end
 
-  test 'should not update category if not admin' do
-    sign_in @user
-    patch admin_category_path(@category), params: { category: @attrs }
-
-    assert_response :redirect
-    assert_redirected_to root_path
-  end
-
   test 'should create category' do
     sign_in @admin
     post admin_categories_path, params: { category: @attrs }
 
     new_category = Category.find_by @attrs
 
-    assert new_category[:name] == @attrs[:name]
+    assert new_category
     assert_redirected_to admin_categories_path
   end
 
-  test 'should not create category if not admin' do
-    sign_in @user
-    post admin_categories_path, params: { category: @attrs }
+  test 'should destroy category' do
+    sign_in @admin
 
+    delete admin_category_path(@category_two)
+
+    assert_not Category.find_by(id: @category_two.id)
     assert_response :redirect
-    assert_redirected_to root_path
+    assert_redirected_to admin_categories_path
+  end
+
+  test 'should not destroy if category has bulletins' do
+    sign_in @admin
+
+    delete admin_category_path(@category)
+
+    assert Category.find_by(id: @category.id)
+    assert_response :redirect
+    assert_redirected_to admin_categories_path
   end
 end

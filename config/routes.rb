@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
 
-    resources :bulletins, except: :destroy do
+    resources :bulletins, only: %i[index show new edit create update] do
       member do
         patch :to_moderate
         patch :archive
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get '/profile', to: 'profile#index'
 
     namespace :admin do
-      resources :categories, except: :show
+      resources :categories, only: %i[index new edit create update destroy]
       resources :bulletins, only: :index do
         member do
           patch :publish

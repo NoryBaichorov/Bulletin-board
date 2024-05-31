@@ -8,28 +8,16 @@ class BulletinPolicy < ApplicationPolicy
     @bulletin = bulletin
   end
 
-  def index?
-    admin?
-  end
-
   def show?
     published_bulletin? || author? || admin?
   end
 
-  def new?
-    user
-  end
-
-  def create?
-    new?
-  end
-
   def edit?
-    update?
+    author?
   end
 
   def update?
-    author?
+    edit?
   end
 
   def to_moderate?
@@ -37,7 +25,7 @@ class BulletinPolicy < ApplicationPolicy
   end
 
   def archive?
-    admin? || author?
+    author?
   end
 
   private
