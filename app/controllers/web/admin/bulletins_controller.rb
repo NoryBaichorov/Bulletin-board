@@ -49,4 +49,10 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
       redirect_back(fallback_location: admin_root_path)
     end
   end
+
+  private
+
+  def set_bulletin
+    @bulletin = Bulletin.find params[:id]
+  end
 end

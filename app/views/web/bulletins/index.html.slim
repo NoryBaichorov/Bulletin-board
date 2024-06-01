@@ -6,7 +6,7 @@
           .mb-4
             h2 = t('titles.board')
             hr
-          = render 'web/bulletins/search_form'
+          = render 'web/bulletins/search_form', query: @query
           .row.mt-2
             - @bulletins.each do |bulletin|
               .col-3.pt-2

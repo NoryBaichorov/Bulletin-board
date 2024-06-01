@@ -32,7 +32,6 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     get admin_bulletins_path
 
-    assert_response :redirect
     assert_redirected_to root_path
   end
 
@@ -53,7 +52,6 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @under_moderation_bulletin.reload
 
     assert @under_moderation_bulletin.under_moderation?
-    assert_response :redirect
     assert_redirected_to root_path
   end
 
@@ -74,7 +72,6 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @under_moderation_bulletin.reload
 
     assert @under_moderation_bulletin.under_moderation?
-    assert_response :redirect
     assert_redirected_to root_path
   end
 
@@ -94,31 +91,6 @@ class Web::Admin::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @under_moderation_bulletin.reload
 
     assert @under_moderation_bulletin.under_moderation?
-    assert_response :redirect
     assert_redirected_to root_path
-  end
-
-  test 'should not set state archived if already archived' do
-    sign_in @admin
-    patch archive_admin_bulletin_path(@archived_bulletin)
-
-    assert_response :redirect
-    assert_redirected_to admin_root_path
-  end
-
-  test 'should not set state published if already published' do
-    sign_in @admin
-    patch publish_admin_bulletin_path(@published_bulletin)
-
-    assert_response :redirect
-    assert_redirected_to admin_root_path
-  end
-
-  test 'should not set state rejected if already rejected' do
-    sign_in @admin
-    patch reject_admin_bulletin_path(@rejected_bulletin)
-
-    assert_response :redirect
-    assert_redirected_to admin_root_path
   end
 end

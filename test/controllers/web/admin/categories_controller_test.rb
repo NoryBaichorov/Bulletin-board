@@ -59,7 +59,6 @@ class Web::CategoriesControllerTest < ActionDispatch::IntegrationTest
     delete admin_category_path(@category_two)
 
     assert_not Category.find_by(id: @category_two.id)
-    assert_response :redirect
     assert_redirected_to admin_categories_path
   end
 
@@ -69,7 +68,6 @@ class Web::CategoriesControllerTest < ActionDispatch::IntegrationTest
     delete admin_category_path(@category)
 
     assert Category.find_by(id: @category.id)
-    assert_response :redirect
     assert_redirected_to admin_categories_path
   end
 end

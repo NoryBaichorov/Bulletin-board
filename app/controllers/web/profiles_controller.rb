@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class Web::ProfileController < Web::ApplicationController
+class Web::ProfilesController < Web::ApplicationController
   before_action :authenticate_user!
 
-  def index
+  def show
     @query = current_user.bulletins.ransack(params[:query])
 
     @bulletins = @query.result.page(params[:page]).per(5)

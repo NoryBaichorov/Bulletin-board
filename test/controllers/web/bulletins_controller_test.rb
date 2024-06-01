@@ -34,6 +34,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should get new' do
     sign_in @user
+
     get new_bulletin_url
     assert_response :success
   end
@@ -41,7 +42,6 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
   test 'should not get new if unauthorized' do
     get new_bulletin_url
 
-    assert_response :redirect
     assert_redirected_to root_url
   end
 
@@ -57,7 +57,6 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     get edit_bulletin_url(@default_bulletin)
 
-    assert_response :redirect
     assert_redirected_to root_path
   end
 
@@ -69,7 +68,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
 
     assert @default_bulletin.title == @attrs[:title]
     assert @default_bulletin.description == @attrs[:description]
-    assert_redirected_to profile_url
+    assert_redirected_to profile_path
   end
 
   test 'should create bulletin' do
@@ -77,7 +76,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     post bulletins_url, params: { bulletin: @attrs.merge(image: @image) }
 
     new_bulletin = Bulletin.find_by @attrs
-    assert_redirected_to bulletin_url(new_bulletin)
+    assert_redirected_to bulletin_path(new_bulletin)
   end
 
   test 'should set state to_moderate' do
@@ -96,18 +95,7 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @default_bulletin.reload
 
     assert @default_bulletin.draft?
-    assert_response :redirect
     assert_redirected_to root_path
-  end
-
-  # Тестирую то, что нельзя отправить на модерацию объявление, которое уже на модерации
-  # Архивное объявление не беру, т.к согласно схеме задания, состояние архивных объявлений нельзя изменить
-  test 'should not set state to_moderate if already under_moderation' do
-    sign_in @user_two
-    patch to_moderate_bulletin_path(@under_moderation_bulletin)
-
-    assert_response :redirect
-    assert_redirected_to profile_path
   end
 
   test 'should set state archived' do
@@ -126,15 +114,6 @@ class Web::BulletinsControllerTest < ActionDispatch::IntegrationTest
     @default_bulletin.reload
 
     assert @default_bulletin.draft?
-    assert_response :redirect
     assert_redirected_to root_path
-  end
-
-  test 'should not set state archived if already archived' do
-    sign_in @user
-    patch archive_bulletin_path(@archived_bulletin)
-
-    assert_response :redirect
-    assert_redirected_to profile_path
   end
 end

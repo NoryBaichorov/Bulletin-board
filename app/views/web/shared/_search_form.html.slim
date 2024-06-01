@@ -1,5 +1,5 @@
 .p-3.bg-light
-  = search_form_for @query, url:, builder: SimpleForm::FormBuilder do |f|
+  = search_form_for query, url:, builder: SimpleForm::FormBuilder do |f|
     .row.my-2
       .col-6
         = f.input :title_cont_any, label: false, hint: t('simple_form.hints.search')

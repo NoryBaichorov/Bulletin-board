@@ -7,7 +7,7 @@
             h2 = t('titles.my_bulletins')
             hr
           = link_to t('links.add_bulletin'), new_bulletin_path
-          = render 'web/shared/search_form', url: profile_path
+          = render 'web/shared/search_form', query: @query, url: profile_path
           .row.mt-2
             table.table.table-borderless
               thead

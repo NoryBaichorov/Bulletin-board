@@ -15,7 +15,8 @@ Rails.application.routes.draw do
       end
     end
 
-    get '/profile', to: 'profile#index'
+    # get '/profile', to: 'profile#index'
+    resource :profile, only: :show
 
     namespace :admin do
       resources :categories, only: %i[index new edit create update destroy]

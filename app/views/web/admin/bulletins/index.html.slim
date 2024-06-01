@@ -5,7 +5,7 @@
     .col-md-9
       h1.h2.mb-4 = t('titles.all_bulletins')
       .row.mt-2
-        = render 'web/shared/search_form', url: admin_bulletins_path
+        = render 'web/shared/search_form', query: @query, url: admin_bulletins_path
         table.table.table-borderless
           thead
             tr

@@ -14,9 +14,4 @@ class Web::ApplicationController < ApplicationController
     flash[:danger] = t('authorization.unauthorized')
     redirect_back(fallback_location: root_path)
   end
-
-  # Решил оставить здесь, т.к используется и в Web::Bulletins и в Web::Admin::Bulletins
-  def set_bulletin
-    @bulletin = Bulletin.find params[:id]
-  end
 end

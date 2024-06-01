@@ -17,7 +17,6 @@ class Web::ProfileControllerTest < ActionDispatch::IntegrationTest
   test 'should not get index if unauthorized' do
     get profile_path
 
-    assert_response :redirect
     assert_redirected_to root_path
   end
 end
