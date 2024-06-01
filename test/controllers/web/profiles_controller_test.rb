@@ -2,7 +2,7 @@
 
 require_relative '../../test_helper'
 
-class Web::ProfileControllerTest < ActionDispatch::IntegrationTest
+class Web::ProfilesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = users(:user)
   end
